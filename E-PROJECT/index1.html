@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
+
+:root{
+    --red:#ff0000;
+}
+
+*{
+    font-family: 'Roboto', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
+    transition:all .3s cubic-bezier(.16,.8,.62,1.52);
+    text-transform: capitalize;
+}
+
+*::selection{
+    background:var(--red);
+    color:#fff;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+html::-webkit-scrollbar{
+    width:1.3rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: #000;
+}
+
+html::-webkit-scrollbar-thumb{
+    background: var(--red);
+}
+
+body{
+    background:#f9f9f9;
+}
+
+section{
+    min-height: 100vh;
+    padding:0 7%;
+    padding-top: 9rem;
+}
+
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    padding:1rem 4rem;
+    border-radius: 5rem;
+    background:var(--red);
+    color:#fff;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    font-size: 1.7rem;
+}
+
+.btn::before{
+    content:'';
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background:#444;
+    clip-path: polygon(0 0, 100% 0, 0 0, 0% 100%);
+    transition:.3s linear;
+}
+
+.btn:hover::before{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.heading{
+    font-size: 3rem;
+    color:#666;
+}
+
+.heading span{
+    color:var(--red);
+}
+
+
+header{
+    width:100%;
+    background: #2e2828;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top:0; left: 0;
+    z-index: 1000;
+    padding:2.5rem 7%;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    color: #f9f9f9;
+}
+
+header .logo{
+    font-size: 2.5rem;
+    color:#ffffff;
+}
+
+header .logo span{
+    color:var(--red);
+}
+
+header .navbar ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+header .navbar ul li{
+    margin-left: 2.5rem;
+}
+
+header .navbar ul li a{
+    color: white;
+    font-size: 2rem;
+}
+
+header .navbar ul li a.active,
+header .navbar ul li a:hover{
+    color:var(--red);
+    border-bottom: .2rem solid var(--red);
+    padding:.7rem 0;
+}
+
+#menu{
+    font-size: 3rem;
+    color:#999;
+    cursor: pointer;
+    display: none;
+}
+
+.home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.home .image{
+    flex:1 1 40rem;
+}
+
+.home .image img{
+    width:100%;
+}
+
+.home .content{
+    flex:1 1 40rem;
+}
+
+.home .content span{
+    color:var(--black);
+    font-size: 2.5rem;
+    font-weight: 800;
+    border-radius: 60px;
+
+}
+
+.home .content h3{
+    color:#f10000;
+    font-size: 5rem;
+}
+
+.home .content p{
+    color:#756c6c;
+    font-size: 2rem;
+    padding:1rem 0;
+}
+
+.protect .heading{
+    text-align: center;
+    padding:1rem;
+}
+
+.protect .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.protect .box-container .box{
+    background:#383030;
+    border:.1rem solid rgba(0,0,0,.1);
+    padding:2rem;
+    margin:2rem;
+    width:34rem;
+    border-radius: .5rem;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    text-align: center;
+    color: #ccc;
+}
+
+.protect .box-container .box img{
+    height: 17rem;
+    width:17rem;
+}
+
+.protect .box-container .box h3{
+    font-size: 2.5rem;
+   color: #ffffff;
+    padding:1rem 0;
+}
+
+.protect .box-container .box p{
+    font-size: 1.4rem;
+    color:#e2dcdc;
+    padding:.5rem;
+}
+
+.protect .box-container .box:hover{
+    transform:translateY(-1rem);
+}
+
+.symtoms{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.symtoms .content{
+    flex:1 1 40rem;
+}
+
+.symtoms .image{
+    flex:1 1 40rem;
+}
+
+.symtoms .image img{
+    width:100%;
+}
+
+.symtoms .content p{
+    font-size: 1.5rem;
+    color:#999;
+    padding:1rem 0;
+}
+
+.symtoms .content ul{
+    display: flex;
+    flex-wrap: wrap;
+    padding:1rem 0;
+}
+
+.symtoms .content ul .two{
+    padding-left: 4.5rem;
+}
+
+.symtoms .content ul li{
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    color:#000000;
+    padding: .5rem 0;
+}
+
+.prevent{
+    background:#2e2828;
+}
+
+.prevent .row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding:2rem 0;
+}
+
+.prevent .row .image{
+    flex:1 1 37rem;
+    height:35rem;
+    text-align: center;
+}
+
+.prevent .row .image img{
+    height:100%;
+    width:100%;
+    object-fit: cover;
+}
+
+.prevent .row .content{
+    padding:2rem 0;
+    flex:1 1 37rem;
+}
+
+.prevent .row .content .heading{
+    color:#fff;
+}
+
+.prevent .row .content p{
+    font-size: 1.7rem;
+    color:#aaa;
+    padding:1rem 0;
+}
+
+.prevent .row .content ul li{
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    color:#aaa;
+    padding:.5rem 0;
+}
+
+.handwash .heading{
+    text-align: center;
+    padding:1rem;
+}
+
+.handwash .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.handwash .box-container .box{
+    background:#fff;
+    border:.1rem solid rgba(0,0,0,.1);
+    margin:2rem;
+    margin-top: 3rem;
+    padding:2rem 3.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.handwash .box-container .box img{
+    height:17rem;
+    width:17rem;
+}
+
+.handwash .box-container .box h3{
+    font-size: 2rem;
+    color:#666;
+    padding:1rem 0;
+}
+
+.handwash .box-container .box span{
+    display: block;
+    position: absolute;
+    top:-2rem; left:-2rem;
+    height:5rem; width:5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    color:#fff;
+    background:var(--red);
+    border-radius: 5rem;
+}
+
+.spread .heading{
+    text-align: center;
+    padding:1rem;
+}
+
+.spread .image{
+    height: 80vh;
+    width:100%;
+    background:url(../images/map.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.footer{
+    min-height: auto;
+    padding-top: 0;
+    background: #2e2828;
+}
+
+.footer .box-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer .box-container .box{
+    flex:1 1 25rem;
+    margin:2rem;
+}
+
+.footer .box-container .box h3{
+    font-size: 2.5rem;
+    color:#fff;
+    padding-bottom: 2rem;
+    font-weight: normal;
+}
+
+.footer .box-container .box p{
+    font-size: 1.5rem;
+    color:#ccc;
+    padding:1rem 0;
+}
+
+.footer .box-container .box p i{
+    padding-right: 1rem;
+    color:var(--red);
+}
+
+.footer .box-container .box a{
+    font-size: 1.5rem;
+    color:rgb(255, 255, 255);
+    padding:1rem 0;
+    display: block;
+}
+
+.footer .box-container .box a:hover{
+    color:var(--red);
+}
+
+.footer .box-container .box .share{
+    display: flex;
+    flex-wrap: wrap;
+    padding:1rem 0;
+}
+
+.footer .box-container .box .share a{
+    height:4rem;
+    width:4rem;
+    line-height: 2rem;
+    text-align: center;
+    border-radius: 5rem;
+    border:.1rem solid #fff3;
+    margin-right: 1rem;
+}
+
+.footer .box-container .box .share a:hover{
+    background:#fff;
+}
+
+.footer .credit{
+    padding:2rem 1rem;
+    text-align: center;
+    color:#fff;
+    font-weight: normal;
+    font-size: 2rem;
+    border-top: .1rem solid #fff3;
+}
+
+.footer .credit a{
+    color:var(--red);
+}
+
+.scroll-top{
+    position: fixed;
+    bottom:7.5rem; right:2rem;
+    z-index: 100;
+    display: none;
+}
+
+.scroll-top img{
+    height: 7rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* media queries  */
+
+@media (max-width:991px){
+
+    html{
+        font-size: 55%;
+    }
+
+}
+
+@media (max-width:768px){
+
+    #menu{
+        display: block;
+    }
+
+    header .navbar{
+        position: fixed;
+        top:8rem; left:-120%;
+        height: 100%;
+        width:100%;
+        background:#000000;
+        border-top: .2rem solid rgba(0,0,0,.1);
+    }
+
+    header .navbar ul{
+        flex-flow: column;
+        padding:2rem;
+    }
+
+    header .navbar ul li{
+        text-align: center;
+        width:100%;
+        margin:1rem 0;
+    }
+
+    header .navbar ul li a{
+        display: block;
+        padding:1rem;
+    }
+
+    header .navbar ul li a.active,
+    header .navbar ul li a:hover{
+        padding:1rem;
+        background:var(--red);
+        color:#fff;
+        border:none;
+        border-radius: 5rem;
+    }
+
+    .fa-times{
+        transform: rotate(180deg);
+    }
+
+    header .navbar.nav-toggle{
+        left:0;
+    }
+
+    .home .content{
+        text-align: center;
+    }
+
+    .prevent .row:last-child{
+        flex-flow: column-reverse;
+    }
+
+}
+
+@media (max-width:500px){
+
+    html{
+        font-size: 50%;
+    }
+
+    section{
+        padding:0 3%;
+        padding-top: 9rem;
+    }
+
+.paragraph{
+    font-size: x-large;
+}
+
+}
+.head{
+    font-size: large;
+    margin: 40px;
+    font-weight: 400;
+    color: #838383;
+}
+.credit{
+    color: #ff2020;
+}
+.about {
+    padding: 5rem 7%;
+    background-color: #fff;
+    text-align: center;
+}
+
+.about h1 {
+    font-size: 3rem;
+    color: #ff0000;
+    margin-bottom: 1.5rem;
+}
+
+.about p {
+    font-size: 1.6rem;
+    color: #070404;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+}
+
+.team {
+    margin-top: 3rem;
+}
+
+.team h2 {
+    font-size: 2.5rem;
+    color:#ff0000;
+    margin-bottom: 2rem;
+}
+
+.team-members {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.member {
+    background-color:  #2e2828;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+.member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.member h3 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.member p {
+    font-size: 1.4rem;
+    color: white;
+}
+
+.member:hover {
+    transform: translateY(-10px);
+}
+
+
+
+
+
+    </style>
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Covid-19 Website Design Tutorial</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <script src="./script.js"></script>
+<!-- header section starts  -->
+
+<header>
+
+    <a href="#" class="logo">c<span class="fas fa-virus"></span>ovid-19</a>
+
+    <div id="menu" class="fas fa-bars"></div>
+
+    <nav class="navbar">
+        <ul>
+            <li><a class="active" href="#home">home</a></li>
+            <li><a href="#protect">protect</a></li>
+            <li><a href="#symtoms">symtoms</a></li>
+            <li><a href="#prevent">prevent</a></li>
+            <li><a href="#handwash">handwash</a></li>
+            <li><a href="#spread">About Us</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="content">
+
+        <span>Covid-19</span>
+        <h3>stay safe, stay home</h3>
+        <p>COVID Viruses: A Brief Overview
+            COVID viruses belong to the coronavirus family, known for causing respiratory illnesses ranging from mild colds to severe diseases. The most notable is SARS-CoV-2, responsible for the COVID-19 pandemic. These viruses spread through respiratory droplets and can cause symptoms like fever, cough, and difficulty breathing.</p>
+        <a href="http://127.0.0.1:5500/E-PROJECT/protect.html" class="btn">protect now</a>
+
+    </div>
+
+    <div class="image">
+        <img src="./home-img.png" alt="">
+    </div>
+
+</section>
+
+<!-- home section ends -->
+
+<section class="protect" id="protect">
+
+    <h1 class="heading">take steps to <span>protect</span> yourself</h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="./protect-1.png" alt="">
+            <h3>Wear A Face Mask</h3>
+            <p>Wearing a mask during COVID helps prevent the spread of respiratory droplets that may contain the virus. It protects both the wearer and others, especially in crowded or indoor settings.</p>
+            <a href="#" class="btn">learn more</a>
+        </div>
+
+        <div class="box">
+            <img src="./protect-2.png" alt="">
+            <h3>Wash Your Hands</h3>
+            <p>Washing your hands helps remove viruses and prevent the spread of COVID-19. It reduces the risk of infection by eliminating germs you might pick up from surfaces.</p>
+            <a href="" class="btn">learn more</a>
+        </div>
+
+        <div class="box">
+            <img src="./protect-3.png" alt="">
+            <h3>Avoid Close Contact</h3>
+            <p>Avoid close contact during COVID-19 to reduce the risk of virus transmission through respiratory droplets. Staying apart minimizes the chances of inhaling or touching surfaces contaminated with the virus.</p>
+            <a href="#" class="btn">learn more</a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- symtoms section starts  -->
+
+<section class="symtoms" id="symtoms">
+
+    <div class="content">
+        <h1 class="heading">What Are The Main <span>Symptoms?</span></h1>
+        <p>The main symptoms of COVID-19 are fever, cough, fatigue, sore throat, loss of taste or smell, and difficulty breathing.</p>
+        <ul>
+            <div class="one">
+                <li>fever</li>
+                <li>Tiredness</li>
+                <li>Dry Cough</li>
+            </div>
+            <div class="two">
+                <li>Sore Throat</li>            
+                <li>Aches and Pains</li>
+                <li>Shortness of Breath</li>
+            </div>
+        </ul>
+        <a href="http://127.0.0.1:5500/E-PROJECT/symptoms.html" class="btn">know more</a>
+    </div>
+
+    <div class="image">
+        <img src="./symptoms-img.png" alt="">
+    </div>
+
+</section>
+
+<!-- symtoms section ends -->
+
+<!-- prevent section starts  -->
+
+<section class="prevent" id="prevent">
+
+    <div class="row">
+
+        <div class="image">
+            <img src="./dont-img.png" alt="">
+        </div>
+
+        <div class="content">
+            <h1 class="heading">things <span>not to do</span> during covid</h1>
+            <p></p>
+            <ul>
+                <li>Do Not Share Eating</li>
+                <li>Do Not Touch Your Face or Nose</li>
+                <li>Do Not Contact Sick People</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="content">
+            <h1 class="heading">things <span>to do</span> during covid</h1>
+            <p></p>
+            <ul>
+                <li>Wash Your Hands For 20 sec</li>
+                <li>Wear a Mask if Available</li>
+                <li>Seek Medical Care Regularly</li>
+            </ul>
+        </div>
+
+        <div class="image">
+            <img src="./do-img.png" alt="">
+        </div>
+
+    </div>
+
+</section>
+
+<!-- prevent section ends -->
+
+<!-- handwash section starts  -->
+
+<section class="handwash" id="handwash">
+
+    <h1 class="heading">how to <span>wash you hand</span> properly</h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <span>1</span>
+            <img src="./hadnwash-1.png" alt="">
+            <h3>Apply Soap on Hand</h3>
+        </div>
+
+        <div class="box">
+            <span>2</span>
+            <img src="./hadnwash-2.png" alt="">
+            <h3>Palm to Palm</h3>
+        </div>
+
+        <div class="box">
+            <span>3</span>
+            <img src="./hadnwash-3.png" alt="">
+            <h3>Between Fingers</h3>
+        </div>
+
+        <div class="box">
+            <span>4</span>
+            <img src="./hadnwash-4.png" alt="">
+            <h3>Back of The Hands</h3>
+        </div>
+
+        <div class="box">
+            <span>5</span>
+            <img src="./hadnwash-5.png" alt="">
+            <h3>clean with water</h3>
+        </div>
+
+        <div class="box">
+            <span>6</span>
+            <img src="./hadnwash-6.png" alt="">
+            <h3>Use Towel to Dry</h3>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- handwash section ends -->
+
+<!-- spread section starts  -->
+
+<section class="spread" id="spread">
+
+  
+ 
+<section class="about">
+    <div class="container">
+        <h1>About Us</h1>
+        <p>We are committed to providing accurate, up-to-date information about COVID-19 to help you stay informed and safe. Our goal is to spread awareness about prevention, symptoms, and safety measures during the pandemic.
+            Dr. Joe is a renowned virologist with a Ph.D. in Virology from Harvard University, specializing in emerging viral pathogens and vaccine development. With over 15 years of experience, he has led multiple research teams at the Global Institute of Infectious Diseases, contributing significantly to the understanding of zoonotic transmissions and antiviral therapies. Dr. Jane Smith, an immunologist with a dual MD-Ph.D. from Stanford University, has collaborated extensively with Dr. Joe, focusing on immune responses to viral infections. Her groundbreaking research on monoclonal antibodies has been published in leading medical journals. Meanwhile, Dr. Michael Brown, an epidemiologist with a Ph.D. from Oxford University, has worked alongside Dr. Joe and Dr. Jane, applying advanced statistical models to track and predict viral outbreaks globally. Together, this trio has co-authored numerous studies that have shaped current approaches to managing viral pandemics, earning them international recognition.
+        </p>
+
+        <div class="team">
+            <h2>Meet Our Team</h2>
+            <div class="team-members">
+                <div class="member">
+                    <img src="./زيارة-طبيب-منزلية-1-removebg-preview.png" alt="Team Member">
+                    <h3>John Doe</h3>
+                    <p>Virologist</p>
+                </div>
+                <div class="member">
+                    <img src="./c08437302143e0564efdef7124d0cb04-removebg-preview (1).png" alt="Team Member">
+                    <h3>Jane Smith</h3>
+                    <p>Epidemiologist</p>
+                </div>
+                <div class="member">
+                    <img src="./pngtree-professional-doctor-with-order-png-image_14666249-removebg-preview.png" alt="Team Member">
+                    <h3>Michael Brown</h3>
+                    <p>Public Health Specialist</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div>
+    <!-- <p class="paragraph">At Covid-19, our team of specialized doctors is dedicated to combating the COVID-19 pandemic with expertise, compassion, and unwavering commitment. Comprised of leading experts in infectious diseases, pulmonology, critical care, and preventive medicine, our doctors bring a wealth of knowledge and experience to the fight against the virus. United by a common goal, we work tirelessly to provide accurate information, effective treatment options, and personalized care to every patient. Guided by the latest research and a passion for saving lives, we stand by you every step of the way in these challenging times. -->
+    </p>
+    <img src="" alt="">
+</div>
+  
+</section>
+<section class="footer">
+    <div class="box-container">
+        <div class="box">
+
+            <img src="./images-removebg-preview (1).png" alt="">
+        </div>
+
+        <div class="box">
+            <h3>locations</h3>
+            <a href="#">india</a>
+            <a href="#">USA</a>
+            <a href="#">russia</a>
+            <a href="#">japan</a>
+            <a href="#">france</a>
+            <a href="#">africa</a>
+            <a href="#">spain</a>
+        </div>
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#">home</a>
+            <a href="#">protect</a>
+            <a href="#">symtoms</a>
+            <a href="#">prevent</a>
+            <a href="#">handwash</a>
+            <a href="#">spread</a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <p> <i class="fas fa-phone"></i> +123-456-7890. </p>
+            <p> <i class="fas fa-envelope"></i> example@gmail.com </p>
+            <p> <i class="fas fa-map-marker-alt"></i> Karachi, Pakistan- 400104. </p>
+            <div class="share">
+                <a href="#" class="fab fa-youtube"></a>
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+            </div>
+        </div>
+
+    </div>
+
+    <h1 class="credit"> E-PROJECT <a href="#"> HK & AG</a> all rights reserved! </h1>
+
+</section>
+
+<!-- footer section ends -->
+
+<!-- scroll top  -->
+
+<a href="#home" class="scroll-top">
+    <img src="./symptoms-img.png" alt="">
+</a>
+
+<!-- jquery cdn link  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

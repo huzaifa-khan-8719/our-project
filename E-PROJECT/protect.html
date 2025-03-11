@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protect Yourself from COVID-19</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #d9534f;
+        }
+        ul {
+            text-align: left;
+        }
+        button {
+            background-color: #5bc0de;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #31b0d5;
+        }
+        #extraTips {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Protect Yourself from COVID-19</h1>
+        <p>Follow these guidelines to stay safe:</p>
+        <ul>
+            <li>Wash your hands regularly with soap and water.</li>
+            <li>Maintain social distancing (at least 6 feet apart).</li>
+            <li>Wear a mask in crowded places.</li>
+            <li>Avoid touching your face, especially eyes, nose, and mouth.</li>
+            <li>Stay home if you feel unwell.</li>
+        </ul>
+        <button onclick="showMore()">More Tips</button>
+        <div id="extraTips">
+            <p>Get vaccinated and stay updated with booster doses.</p>
+            <p>Disinfect frequently touched surfaces daily.</p>
+            <p>Boost your immune system with a healthy diet and exercise.</p>
+        </div>
+    </div>
+    <script>
+        function showMore() {
+            var extraTips = document.getElementById('extraTips');
+            if (extraTips.style.display === "none") {
+                extraTips.style.display = "block";
+            } else {
+                extraTips.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
+
